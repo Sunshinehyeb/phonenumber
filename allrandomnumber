@@ -1,0 +1,23 @@
+import random
+import pandas as pd
+
+
+pre=range(20000000,100000000)
+pre=[item for item in pre if item <59000000 or item >=62000000]
+a=["010"+str(i).zfill(8) for i in pre]#nation number 82
+aa=random.sample(a,77000000)
+
+start_pos=0
+end_pos=len(aa)
+num=1
+div=300000
+
+for idx in range(start_pos, end_pos+div,div):
+    out=aa[start_pos:start_pos+div]
+    if out!=[]:
+        #print(out)
+        raw_data=pd.DataFrame(out)
+        new_filename='C:/PATH/DBname'+"("+str(num)+")"+'.xlsx'
+        raw_data.to_excel(excel_writer=new_filename,header=False,index=False)
+    start_pos=start_pos+div
+    num=num+1
